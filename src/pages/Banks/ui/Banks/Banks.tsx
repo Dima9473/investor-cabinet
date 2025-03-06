@@ -11,7 +11,7 @@ export const Banks = () => {
           color: isActive ? 'red' : 'black',
         })}
       >
-        T-bank
+        T-bank2
       </NavLink>
     </>
   );
