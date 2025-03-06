@@ -1,4 +1,4 @@
-name: Pull request chechs
+name: Build
 
 on:
   pull_request:
