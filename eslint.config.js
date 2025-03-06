@@ -3,9 +3,10 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'vite.config.ts'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -16,9 +17,22 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@stylistic': stylistic
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      'block-spacing': ['error', 'always'],
+      'brace-style': ['error', '1tbs'],
+      'comma-dangle': ['error', 'never'],    
+      'array-bracket-spacing': ['error', 'never'],      
+      "space-before-blocks": ['error', 'always'],
+      "object-curly-spacing": ['error', 'always'],   
+      "comma-spacing": ["error", { "before": false, "after": true }],
+      "jsx-quotes": ["error", "prefer-double"],      
+      "space-in-parens": ['error', 'never'],
+      "key-spacing": ["error", { "beforeColon": false }],
+      "max-len": ["error", { "code": 80 }],
+      "multiline-comment-style": ["error", "starred-block"],
       "no-unused-vars": "error",
       "no-duplicate-case": 'error',
       "no-duplicate-imports": 'error',
@@ -43,6 +57,6 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-    },
+    }
   },
 )
