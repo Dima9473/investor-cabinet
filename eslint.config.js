@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export default tseslint.config(
   { ignores: ['dist', 'vite.config.ts'] },
@@ -17,7 +18,8 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
+      "simple-import-sort": simpleImportSort,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -51,8 +53,27 @@ export default tseslint.config(
       "no-nested-ternary": 'error',
       "no-redeclare": 'error',
       "no-useless-catch": 'error',
-      "sort-imports": 'error',
       "sort-keys": 'error',
+      "simple-import-sort/exports": "error",
+      "simple-import-sort/imports": [
+        'error',
+        {
+          groups: [
+            ['^'],
+            [
+              '^shared',
+              '^entities',
+              '^features',
+              '^widgets',
+              '^pages',
+              '^\\.\\.?/?',
+            ],
+            ['hooks'],
+            ['types'],
+            ['^.+\\.s?css$']
+          ]
+        }
+      ],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

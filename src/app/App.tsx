@@ -1,9 +1,11 @@
 /* eslint-disable no-magic-numbers */
-import "./App.css";
-import { BrowserRouter } from "react-router";
-import { Routes } from "./routes";
-import { useState } from "react";
 import viteLogo from "/vite.svg";
+import { useState } from "react";
+import { BrowserRouter } from "react-router";
+
+import { Routes } from "./routes";
+
+import "./App.css";
 
 function App () {
 
