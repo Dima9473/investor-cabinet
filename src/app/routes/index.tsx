@@ -1,8 +1,8 @@
 import { Route, Routes as ReactRoutes } from 'react-router';
 
 import { About } from '../../pages/About';
-import { Home } from '../../pages/Home';
 import { Banks, TBank } from '../../pages/Banks';
+import { Home } from '../../pages/Home';
 
 export const Routes = () => {
   return (
