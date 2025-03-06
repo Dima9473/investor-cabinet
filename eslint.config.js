@@ -25,7 +25,6 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'block-spacing': ['error', 'always'],
       'brace-style': ['error', '1tbs'],
-      'comma-dangle': ['error', 'never'],    
       'array-bracket-spacing': ['error', 'never'],      
       "space-before-blocks": ['error', 'always'],
       "object-curly-spacing": ['error', 'always'],   
