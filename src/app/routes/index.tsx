@@ -1,7 +1,7 @@
 import { ProtectedRoute } from 'app/ui/ProtectedRoute';
 import { Navigate } from 'react-router';
 
-import { AUTH_ROUTE } from 'shared/lib/const/routes/fullPaths';
+import { APP_ROUTER } from 'shared/lib/const/routes/fullPaths';
 import { APP, AUTH } from 'shared/lib/const/routes/shortPaths';
 import { App } from '../ui/App';
 import { MainLayout } from '../ui/MainLayout';
@@ -13,7 +13,7 @@ import { Routes } from '../model/types/routes';
 
 const AppRoutes: Routes[] = [
   {
-    path: APP,
+    path: APP_ROUTER,
     element: (
       <ProtectedRoute>
         <App />
@@ -32,7 +32,7 @@ const AppRoutes: Routes[] = [
   },
   {
     path: '*',
-    element: <Navigate to={AUTH_ROUTE} replace />,
+    element: <Navigate to={APP} replace />,
   },
 ];
 
