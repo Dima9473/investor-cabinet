@@ -32,7 +32,6 @@ export default tseslint.config(
       "jsx-quotes": ["error", "prefer-double"],      
       "space-in-parens": ['error', 'never'],
       "key-spacing": ["error", { "beforeColon": false }],
-      "max-len": ["error", { "code": 80 }],
       "multiline-comment-style": ["error", "starred-block"],
       "no-duplicate-case": 'error',
       "no-duplicate-imports": 'error',
