@@ -6,7 +6,7 @@ export const Banks = () => {
       Banks
       <br />
       <NavLink
-        to="/banks/t-bank"
+        to="t-bank"
         style={({ isActive }) => ({
           color: isActive ? 'red' : 'black',
         })}

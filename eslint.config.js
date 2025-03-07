@@ -34,7 +34,6 @@ export default tseslint.config(
       "key-spacing": ["error", { "beforeColon": false }],
       "max-len": ["error", { "code": 80 }],
       "multiline-comment-style": ["error", "starred-block"],
-      "no-unused-vars": "error",
       "no-duplicate-case": 'error',
       "no-duplicate-imports": 'error',
       "no-empty-pattern": 'error',
@@ -52,7 +51,6 @@ export default tseslint.config(
       "no-nested-ternary": 'error',
       "no-redeclare": 'error',
       "no-useless-catch": 'error',
-      "sort-keys": 'error',
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": [
         'error',
