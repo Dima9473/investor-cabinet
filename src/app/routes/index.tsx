@@ -1,5 +1,7 @@
 import { ProtectedRoute } from 'app/ui/ProtectedRoute';
+import { Navigate } from 'react-router';
 
+import { AUTH_ROUTE } from 'shared/lib/const/routes/fullPaths';
 import { APP, AUTH } from 'shared/lib/const/routes/shortPaths';
 import { App } from '../ui/App';
 import { MainLayout } from '../ui/MainLayout';
@@ -27,6 +29,10 @@ const AppRoutes: Routes[] = [
   {
     path: AUTH,
     children: loginConfig,
+  },
+  {
+    path: '*',
+    element: <Navigate to={AUTH_ROUTE} replace />,
   },
 ];
 
