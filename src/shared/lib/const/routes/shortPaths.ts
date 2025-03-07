@@ -1,7 +1,7 @@
 /**
  * App
  */
-export const APP = '/'
+export const APP = '/investor-cabinet'
 
 /**
  * Auth

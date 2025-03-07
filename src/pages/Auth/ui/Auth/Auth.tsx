@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router';
 import { useStore } from 'store/useStore';
 
-import { BANKS_ROUTE } from 'shared/lib/const/routes/fullPaths';
+import { BANKS } from 'shared/lib/const/routes/shortPaths';
 import { AuthContent } from '../AuthContent/AuthContent';
 
 export const Auth = () => {
@@ -11,5 +11,5 @@ export const Auth = () => {
     return <AuthContent />;
   }
 
-  return <Navigate to={BANKS_ROUTE} replace />;
+  return <Navigate to={BANKS} replace />;
 };
