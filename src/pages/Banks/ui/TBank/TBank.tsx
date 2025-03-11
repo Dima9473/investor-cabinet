@@ -1,25 +1,28 @@
-// import { useEffect } from 'react';
-
-// import { fetchTBankAccounts } from 'pages/Banks/api/fetchTBankAccounts';
 import { useTbankAccounts } from 'pages/Banks/hooks/useTBankAccounts';
+import { useTbankOperations } from 'pages/Banks/hooks/useTbankOperations';
 
 export const TBank = () => {
-  const { data } = useTbankAccounts();
+  const { data: accounts } = useTbankAccounts();
+  const { data: operations } = useTbankOperations(
+    accounts ? { accountId: accounts[0].id } : undefined,
+  );
 
-  /*
-   * useEffect(() => {
-   *   const getAccounts = async () => {
-   *     const test = await fetchTBankAccounts();
-   *     debugger;
-   *     console.log(test);
-   *   };
-   */
+  if (!accounts) {
+    return <>T-Bank</>;
+  }
 
-  /*
-   *   getAccounts();
-   * }, []);
-   */
-
-  console.log(data);
-  return <>T-Bank</>;
+  return (
+    <>
+      T-Bank
+      {accounts.map((account) => (
+        <>{account.name}</>
+      ))}
+      <br />
+      {operations?.map((operation) => (
+        <>
+          {operation.id} {operation.date}
+        </>
+      ))}
+    </>
+  );
 };

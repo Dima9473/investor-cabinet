@@ -1,12 +1,13 @@
-import { TOKEN } from "lib/constants/token"
+import { Accounts } from "../model/types/accounts"
 
- 
-const URL = 'https://invest-public-api.tinkoff.ru/rest/tinkoff.public.invest.api.contract.v1.UsersService/GetAccounts'
+const URL = 'http://localhost:3000/accounts/t-bank'
 
-export const fetchTBankAccounts = async () => {
-    return fetch(URL, { method: 'POST', headers: {
-        'Authorization': `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
-    } })
+export const fetchTBankAccounts = async (): Promise<Accounts> => {
+    const response = await fetch(URL, { method: 'POST' })
+
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+  
+    return await response.json();
 }
