@@ -2,7 +2,7 @@ import { ProtectedRoute } from 'app/ui/ProtectedRoute';
 import { Navigate } from 'react-router';
 
 import { APP_ROUTER } from 'shared/lib/const/routes/fullPaths';
-import { APP, AUTH } from 'shared/lib/const/routes/shortPaths';
+import { AUTH } from 'shared/lib/const/routes/shortPaths';
 import { App } from '../ui/App';
 import { MainLayout } from '../ui/MainLayout';
 import { Redirect } from '../ui/Redirect/Redirect';
@@ -32,7 +32,7 @@ const AppRoutes: Routes[] = [
   },
   {
     path: '*',
-    element: <Navigate to={APP} replace />,
+    element: <Navigate to={APP_ROUTER} replace />,
   },
 ];
 

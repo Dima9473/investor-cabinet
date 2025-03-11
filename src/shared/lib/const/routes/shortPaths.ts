@@ -1,9 +1,4 @@
 /**
- * App
- */
-export const APP = '/investor-cabinet'
-
-/**
  * Auth
  */
 export const AUTH = 'auth'
