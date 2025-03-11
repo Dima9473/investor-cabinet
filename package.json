@@ -13,11 +13,14 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.67.2",
     "immer": "^10.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.2.0",
     "use-sync-external-store": "^1.4.0",
+    "vite-plugin-mkcert": "^1.17.7",
+    "vite-plugin-node-polyfills": "^0.23.0",
     "vite-tsconfig-paths": "^5.1.4",
     "zustand": "^5.0.3"
   },
