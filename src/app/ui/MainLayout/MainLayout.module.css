@@ -1,5 +1,5 @@
 .container {
-    background-color: aqua;
+    background-color: var(--background-color);
     min-height: 100vh;
     height: 100%;
     display: flex;
@@ -7,4 +7,5 @@
 
 .content {
     border: 1px solid red;
+    width: 100%;
 }
