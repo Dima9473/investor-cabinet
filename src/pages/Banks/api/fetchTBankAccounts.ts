@@ -1,4 +1,4 @@
-import { Accounts } from "../model/types/accounts"
+import { Accounts } from "model/types/banks/account"
 
 const URL = 'http://localhost:3000/accounts/t-bank'
 

@@ -1,31 +1,24 @@
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
+import { useStore } from 'store/useStore';
 
 import { DataTable } from 'shared/ui/DataTable';
 
-import { useTbankAccounts } from '../../hooks/useTBankAccounts';
 import { useTbankOperations } from '../../hooks/useTbankOperations';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 export const TBank = () => {
-  const [dataFrom, setDataFrom] = useState<Date | null>(null);
-  const [dataTo, setDataTo] = useState<Date | null>(null);
+  const { from, to, accounts } = useStore();
 
-  const { data: accounts } = useTbankAccounts();
-  const {
-    data: operations,
-    isFetching: operationsFetching,
-    refetch,
-  } = useTbankOperations(
-    accounts
-      ? {
-          accountId: accounts[0].id,
-          from: dataFrom ? dataFrom : undefined,
-          to: dataTo ? dataTo : undefined,
-        }
-      : undefined,
-  );
+  const { data: operations, isFetching: operationsFetching } =
+    useTbankOperations(
+      accounts
+        ? {
+            accountId: accounts[0].id,
+            from: from ? from : undefined,
+            to: to ? to : undefined,
+          }
+        : undefined,
+    );
 
   if (!accounts) {
     return <>T-Bank</>;
@@ -38,9 +31,6 @@ export const TBank = () => {
   return (
     <>
       T-Bank
-      <DatePicker selected={dataFrom} onChange={(date) => setDataFrom(date)} />
-      <DatePicker selected={dataTo} onChange={(date) => setDataTo(date)} />
-      <button onClick={() => refetch()}>обновить данные</button>
       {accounts.map((account) => (
         <div key={account.id}>{account.name}</div>
       ))}
