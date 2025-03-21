@@ -1,7 +1,7 @@
 export type OperationsRequest = {
     accountId: string,
-    from?: string,
-    to?: string,
+    from?: Date,
+    to?: Date,
     state?: string,
     figi?: string
 }

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { Banks } from 'pages/Banks';
+import { Banks } from '../Banks';
 
 import styles from './MainLayout.module.css';
 
