@@ -7,6 +7,7 @@ import { DateRange } from 'shared/ui/DateRange/DateRange';
 import { Select } from 'shared/ui/Select';
 import { useTbankAccounts } from 'pages/Banks/hooks/useTBankAccounts';
 import { useTbankOperations } from 'pages/Banks/hooks/useTbankOperations';
+import { getOperationsParams } from 'pages/Banks/lib/getOperationsParams';
 
 import { Account } from 'model/types/banks/account';
 
@@ -18,11 +19,11 @@ export const BanksLayout = () => {
   const { data: accounts, isFetched: isAccountsFetched } = useTbankAccounts();
   const { refetch } = useTbankOperations(
     account
-      ? {
+      ? getOperationsParams({
           accountId: account.id,
-          from: from ? parse(from, 'yyyy/MM/dd', new Date()) : undefined,
-          to: to ? parse(to, 'yyyy/MM/dd', new Date()) : undefined,
-        }
+          from: from,
+          to: to,
+        })
       : undefined,
   );
 

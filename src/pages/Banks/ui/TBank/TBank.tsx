@@ -1,7 +1,7 @@
-import { parse } from 'date-fns';
 import { useStore } from 'store/useStore';
 
 import { DataTable } from 'shared/ui/DataTable';
+import { getOperationsParams } from '../../lib/getOperationsParams';
 
 import { useTbankOperations } from '../../hooks/useTbankOperations';
 
@@ -10,14 +10,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 export const TBank = () => {
   const { from, to, account } = useStore();
 
-  const { data: operations, isFetching: operationsFetching } =
+  const { data: dataOperations, isFetching: operationsFetching } =
     useTbankOperations(
       account
-        ? {
+        ? getOperationsParams({
             accountId: account.id,
-            from: from ? parse(from, 'yyyy/MM/dd', new Date()) : undefined,
-            to: to ? parse(to, 'yyyy/MM/dd', new Date()) : undefined,
-          }
+            from: from,
+            to: to,
+          })
         : undefined,
     );
 
@@ -32,7 +32,7 @@ export const TBank = () => {
   return (
     <>
       {account.name}
-      {operations && <DataTable data={operations} />}
+      {dataOperations && <DataTable data={dataOperations.operations} />}
     </>
   );
 };

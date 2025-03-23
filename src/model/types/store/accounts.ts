@@ -1,4 +1,4 @@
-import { Account, Accounts } from "../banks/account"
+import { Account, Accounts } from "endpoints/types/banks/accounts"
 
 export type AccountStore = {
     account?: Account,

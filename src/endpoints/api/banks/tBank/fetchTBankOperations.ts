@@ -1,5 +1,6 @@
-import { Operations } from "../model/types/operations";
-import { OperationsRequest } from "../model/types/operationsRequest";
+
+import { Operations } from "../../../types/banks/operations";
+import { OperationsRequest } from "../../../types/banks/requests/operationsRequest";
 
 const URL = 'http://localhost:3000/operations/t-bank'
 

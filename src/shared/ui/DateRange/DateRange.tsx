@@ -35,7 +35,7 @@ export const DateRange = (props: DateRangeProps) => {
   return (
     <div className={styles.container}>
       {String(innerFrom)}
-      {String(innerTo)}
+      {innerTo?.toLocaleDateString()}
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           label="From"

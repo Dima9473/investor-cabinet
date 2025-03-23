@@ -1,8 +1,8 @@
-import { Accounts } from "model/types/banks/account"
+import { AccountsDTO } from "../../../types/banks/DTO/accountsDTO"
 
 const URL = 'http://localhost:3000/accounts/t-bank'
 
-export const fetchTBankAccounts = async (): Promise<Accounts> => {
+export const fetchTBankAccounts = async (): Promise<AccountsDTO> => {
     const response = await fetch(URL, { method: 'POST' })
 
     if (!response.ok) {

@@ -40,5 +40,3 @@ export type Operation = {
     id: string,
     quantityRest: string
 }
-
-export type Operations = Operation[]
