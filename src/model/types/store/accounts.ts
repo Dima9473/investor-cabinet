@@ -1,7 +1,9 @@
-import { Accounts } from "../banks/account"
+import { Account, Accounts } from "../banks/account"
 
 export type AccountStore = {
-    accounts: Accounts | undefined
+    account?: Account,
+    accounts?: Accounts
+    setAccount: (account?: Account) => void
     setAccounts: (accounts?: Accounts) => void
 }
 

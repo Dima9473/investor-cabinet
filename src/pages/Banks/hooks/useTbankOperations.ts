@@ -15,6 +15,5 @@ export const useTbankOperations = (params?: OperationsRequest) => {
            return fetchTBankOperations(params)
         },
         enabled: !!params,
-        // refetchInterval: 10000
     })
 }

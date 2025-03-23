@@ -1,9 +1,7 @@
-import { Dayjs } from "dayjs"
-
 export type OperationsRequest = {
     accountId: string,
-    from?: Dayjs,
-    to?: Dayjs,
+    from?: Date,
+    to?: Date,
     state?: string,
     figi?: string
 }

@@ -1,6 +1,6 @@
-export type SelectOption = {
+export type SelectOption<T> = {
   id: string;
   name: string;
-  options: object
+  option: T
 };
 

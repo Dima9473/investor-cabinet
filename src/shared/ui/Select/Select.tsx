@@ -6,32 +6,43 @@ import {
   Select as MuiSelect,
   SelectChangeEvent,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SelectOption } from 'shared/model/types/select';
 
-export type SelectProps = {
-  options: SelectOption[];
+export type SelectProps<T> = {
+  value?: string;
+  label?: string;
+  options: SelectOption<T>[];
+  onChange?: (value?: T) => void;
 };
 
-export const Select = (props: SelectProps) => {
-  const { options } = props;
+export const Select = <T,>(props: SelectProps<T>) => {
+  const { options, label, onChange, value } = props;
 
-  const [age, setAge] = useState('');
+  const [innerValue, setInnerValue] = useState<string>(value || '');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    const option = options.find((option) => option.id === event.target.value);
+    setInnerValue(event.target.value as string);
+    onChange?.(option?.option);
   };
+
+  useEffect(() => {
+    setInnerValue(value || '');
+  }, [value]);
 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        {label && (
+          <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+        )}
         <MuiSelect
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={innerValue}
+          label={label}
           onChange={handleChange}
         >
           {options.map((option) => (
