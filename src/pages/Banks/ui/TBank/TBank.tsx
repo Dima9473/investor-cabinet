@@ -5,8 +5,6 @@ import { getOperationsParams } from '../../lib/getOperationsParams';
 
 import { useTbankOperations } from '../../hooks/useTbankOperations';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 export const TBank = () => {
   const { from, to, account } = useStore();
 
