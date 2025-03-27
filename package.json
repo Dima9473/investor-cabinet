@@ -10,15 +10,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@mui/material": "^6.4.8",
-    "@mui/x-date-pickers": "^7.28.0",
-    "@tanstack/react-table": "^8.21.2",
-    "dayjs": "^1.11.13",
     "react": "^19.0.0",
-    "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0",
     "react-use": "^17.6.0",
     "zustand": "^5.0.3"
@@ -44,12 +40,16 @@
     "immer": "^10.1.1",
     "prettier": "^3.5.3",
     "react-router": "^7.2.0",
+    "husky": "^9.1.7",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "use-sync-external-store": "^1.4.0",
     "vite": "^6.2.0",
     "vite-plugin-mkcert": "^1.17.7",
     "vite-plugin-node-polyfills": "^0.23.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "@tanstack/react-table": "^8.21.2",
+    "@mui/material": "^6.4.8",
+    "@mui/x-date-pickers": "^7.28.0"
   }
 }
