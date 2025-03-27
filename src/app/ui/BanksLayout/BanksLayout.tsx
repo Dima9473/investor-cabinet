@@ -9,7 +9,7 @@ import { useTbankAccounts } from 'pages/Banks/hooks/useTBankAccounts';
 import { useTbankOperations } from 'pages/Banks/hooks/useTbankOperations';
 import { getOperationsParams } from 'pages/Banks/lib/getOperationsParams';
 
-import { Account } from 'model/types/banks/account';
+import { Account } from 'endpoints/types/banks/accounts';
 
 import styles from './BanksLayout.module.css';
 
