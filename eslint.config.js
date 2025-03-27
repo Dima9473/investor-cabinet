@@ -28,7 +28,6 @@ export default tseslint.config(
       'array-bracket-spacing': ['error', 'never'],      
       "space-before-blocks": ['error', 'always'],
       "object-curly-spacing": ['error', 'always'],   
-      "comma-spacing": ["error", { "before": false, "after": true }],
       "jsx-quotes": ["error", "prefer-double"],      
       "space-in-parens": ['error', 'never'],
       "key-spacing": ["error", { "beforeColon": false }],

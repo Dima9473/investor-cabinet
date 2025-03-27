@@ -2,8 +2,15 @@ import { Navigate, useLocation } from 'react-router';
 
 import { BANKS } from 'shared/lib/const/routes/shortPaths';
 
-export const Redirect = () => {
+export type RedirectProps = {
+  redirect?: string;
+};
+
+export const Redirect = (props: RedirectProps) => {
+  const { redirect } = props;
   const { state } = useLocation();
 
-  return <Navigate to={state?.redirect ?? BANKS} />;
+  const defaultUrl = redirect ?? BANKS;
+
+  return <Navigate to={state?.redirect ?? defaultUrl} />;
 };
