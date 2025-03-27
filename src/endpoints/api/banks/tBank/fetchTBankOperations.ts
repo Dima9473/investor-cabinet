@@ -4,7 +4,7 @@ import { OperationsRequest } from "../../../types/banks/requests/operationsReque
 
 const URL = 'http://localhost:3000/operations/t-bank'
 
-export const fetchTBankOperations = async (params: OperationsRequest): Promise<Operations> => {
+export const fetchTBankOperations = async (params: OperationsRequest): Promise<Operations | null> => {
     const response = await fetch(URL, { method: 'POST', body: JSON.stringify({ ...params }) })
 
     if (!response.ok) {
