@@ -10,7 +10,7 @@ import { getOperationsParams } from 'pages/Banks/lib/getOperationsParams';
 import { useAccountInfo } from 'endpoints/hooks/banks/useAccountInfo';
 import { useBankOperations } from 'endpoints/hooks/banks/useBankOperations';
 
-import { Account } from 'endpoints/types/banks/accounts';
+import { Account } from 'endpoints/model/types/banks/accounts';
 
 import styles from './BanksLayout.module.css';
 

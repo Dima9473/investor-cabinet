@@ -1,4 +1,4 @@
-import { Account, Accounts } from "endpoints/types/banks/accounts";
+import { Account, Accounts } from "endpoints/model/types/banks/accounts";
 import { AccountStore } from "model/types/store/accounts";
 import { StoreCreater } from "model/types/store/storeCreater";
     

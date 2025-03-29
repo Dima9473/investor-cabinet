@@ -1,9 +1,9 @@
 import { CLUSTERS } from "../../lib/constants/clasters"
 import { useEndpoint } from "../useEndpoint"
 
-import { OperationsDTO } from "../../types/banks/DTO/operationsDTO"
-import { Operations } from "../../types/banks/operations"
-import { OperationsRequest } from "../../types/banks/requests/operationsRequest"
+import { OperationsDTO } from "../../model/types/banks/DTO/operationsDTO"
+import { Operations } from "../../model/types/banks/operations"
+import { OperationsRequest } from "../../model/types/banks/requests/operationsRequest"
 
 type UseBankOperationsProps = Omit<OperationsRequest, 'bankName'> & {
     bankName: string

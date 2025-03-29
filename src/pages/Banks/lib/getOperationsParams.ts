@@ -1,6 +1,6 @@
 import { endOfDay, parse } from "date-fns";
 
-import { OperationsRequest } from "endpoints/types/banks/requests/operationsRequest";
+import { OperationsRequest } from "endpoints/model/types/banks/requests/operationsRequest";
 
 type UseTbankOperationsParams = Omit<OperationsRequest, 'from' | 'to'> & {
     from?: string,

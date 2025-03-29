@@ -2,8 +2,8 @@ import { CLUSTERS } from "endpoints/lib/constants/clasters";
 
 import { useEndpoint } from "../useEndpoint";
 
-import { Accounts } from "../../types/banks/accounts";
-import { AccountsDTO } from "../../types/banks/DTO/accountsDTO";
+import { Accounts } from "../../model/types/banks/accounts";
+import { AccountsDTO } from "../../model/types/banks/DTO/accountsDTO";
 
 export const useAccountInfo = (bankName: string) => {
     return useEndpoint({
