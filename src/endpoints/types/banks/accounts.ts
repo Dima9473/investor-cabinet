@@ -1,8 +1,6 @@
-export type Account = {
-    id: string,
-    openedDate?: string,
-    closedDate?: string,
-    name?: string,
-}
+import { z } from "zod"
+import { AccountSchema } from "zodSchemas/banks/account"
+
+export type Account = z.infer<typeof AccountSchema>
 
 export type Accounts = Account[]

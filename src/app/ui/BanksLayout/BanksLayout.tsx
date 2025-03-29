@@ -1,13 +1,14 @@
 import { format, parse } from 'date-fns';
 import { useEffect } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
 import { DateRange } from 'shared/ui/DateRange/DateRange';
 import { Select } from 'shared/ui/Select';
-import { useTbankAccounts } from 'pages/Banks/hooks/useTBankAccounts';
-import { useTbankOperations } from 'pages/Banks/hooks/useTbankOperations';
 import { getOperationsParams } from 'pages/Banks/lib/getOperationsParams';
+
+import { useAccountInfo } from 'endpoints/hooks/banks/useAccountInfo';
+import { useBankOperations } from 'endpoints/hooks/banks/useBankOperations';
 
 import { Account } from 'endpoints/types/banks/accounts';
 
@@ -16,11 +17,16 @@ import styles from './BanksLayout.module.css';
 export const BanksLayout = () => {
   const { from, to, account, setFrom, setTo, setAccounts, setAccount } =
     useStore();
-  const { data: accounts, isFetched: isAccountsFetched } = useTbankAccounts();
-  const { refetch } = useTbankOperations(
+
+  const { bankName = '' } = useParams();
+
+  const { data: accounts, isFetched: isAccountsFetched } =
+    useAccountInfo(bankName);
+  const { refetch } = useBankOperations(
     account
       ? getOperationsParams({
           accountId: account.id,
+          bankName,
           from: from,
           to: to,
         })
