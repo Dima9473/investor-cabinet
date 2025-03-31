@@ -1,26 +1,29 @@
+import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
 import { DataTable } from 'shared/ui/DataTable';
 import { getOperationsParams } from '../../lib/getOperationsParams';
 
-import { useTbankOperations } from '../../hooks/useTbankOperations';
+import { useBankOperations } from 'endpoints/hooks/banks/useBankOperations';
 
 export const TBank = () => {
   const { from, to, account } = useStore();
+  const { bankName = '' } = useParams();
 
   const { data: dataOperations, isFetching: operationsFetching } =
-    useTbankOperations(
+    useBankOperations(
       account
         ? getOperationsParams({
             accountId: account.id,
             from: from,
             to: to,
+            bankName,
           })
         : undefined,
     );
 
   if (!account) {
-    return <>T-Bank</>;
+    return <>{bankName}</>;
   }
 
   if (operationsFetching) {

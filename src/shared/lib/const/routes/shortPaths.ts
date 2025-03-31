@@ -11,7 +11,7 @@ export const BANKS = 'banks'
 /**
  * T-Bank page
  */
-export const T_BANK = 't-bank'
+export const T_BANK = ':bankName'
 
 /**
  * SberBank page

@@ -9,7 +9,10 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths(), nodePolyfills(), mkcert()],
   server: {
     port: 9001,
-    https: true
+    https: {
+      key: undefined,
+      cert: undefined
+    }
   },
   base: './'
 })
