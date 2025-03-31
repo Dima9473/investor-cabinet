@@ -18,11 +18,10 @@ export type UseEndpointProps<TData, TError, TSelected = TData> = {
 
 export const useEndpoint = <TData, TError, TSelected = TData>(props: UseEndpointProps<TData, TError, TSelected>) => {
     const { queryFnOptions, queryOptions } = props
-    const queryFn = createFetchFn(queryFnOptions)
 
     return useQuery({
         ...queryOptions,
-        queryFn
+        queryFn: createFetchFn(queryFnOptions)
     })
 }
 
