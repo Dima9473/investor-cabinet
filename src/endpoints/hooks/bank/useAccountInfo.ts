@@ -1,3 +1,4 @@
+import { AVAILABLE_BANKS } from "endpoints/lib/constants/availableBanks";
 import { CLUSTERS } from "endpoints/lib/constants/clasters";
 
 import { useEndpoint } from "../useEndpoint";
@@ -17,7 +18,7 @@ export const useAccountInfo = (bankName: string) => {
         },
         queryOptions: {
             queryKey: [bankName, 'accounts'],
-            enabled: !!bankName,
+            enabled: !!AVAILABLE_BANKS[bankName.toUpperCase() as keyof typeof AVAILABLE_BANKS],
         }
     })
 }
