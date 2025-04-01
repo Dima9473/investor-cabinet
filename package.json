@@ -11,7 +11,10 @@
     "lint:fix": "eslint --fix .",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
   },
   "dependencies": {
     "@types/node": "^22.13.14",

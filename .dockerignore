@@ -4,4 +4,10 @@ Dockerfile
 .dockerignore
 .git
 .gitignore
+README.md
 .env
+.env.local
+dist
+coverage
+.vscode
+.idea 

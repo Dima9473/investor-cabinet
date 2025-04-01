@@ -1,20 +1,35 @@
-# Use the latest LTS version of Node.js
-FROM node:18-alpine
+# Этап сборки
+FROM node:18-alpine as build
 
-# Set the working directory inside the container
+# Define build arguments for environment variables
+ARG VITE_API_URL
+
+# Set environment variables during the build process
+ENV VITE_API_URL=$VITE_API_URL
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Копируем файлы зависимостей
 COPY package*.json ./
 
-# Install dependencies
+# Устанавливаем зависимости
 RUN npm install
 
-# Copy the rest of your application files
+# Копируем исходный код
 COPY . .
 
-# Expose the port your app runs on
+# Собираем приложение
+RUN npm run build
+
+# Этап production
+FROM nginx:alpine
+
+# Копируем собранные файлы из этапа сборки
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Копируем конфигурацию nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 9001
 
-# Define the command to run your app
-CMD ["npm", "run", "dev"]
+CMD ["nginx", "-g", "daemon off;"] 
