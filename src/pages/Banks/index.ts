@@ -1,1 +1,1 @@
-export * from './ui/TBank'
+export * from './ui/Bank'

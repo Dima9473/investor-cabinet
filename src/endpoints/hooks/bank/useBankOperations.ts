@@ -1,10 +1,11 @@
+import { AVAILABLE_BANKS } from "endpoints/lib/constants/availableBanks"
+
 import { CLUSTERS } from "../../lib/constants/clasters"
 import { useEndpoint } from "../useEndpoint"
 
-import { OperationsDTO } from "../../model/types/banks/DTO/operationsDTO"
-import { Operations } from "../../model/types/banks/operations"
-import { OperationsRequest } from "../../model/types/banks/requests/operationsRequest"
-
+import { OperationsDTO } from "../../model/types/bank/DTO/operationsDTO"
+import { Operations } from "../../model/types/bank/operations"
+import { OperationsRequest } from "../../model/types/bank/requests/operationsRequest"
 type UseBankOperationsProps = Omit<OperationsRequest, 'bankName'> & {
     bankName: string
 }
@@ -25,7 +26,7 @@ export const useBankOperations = (props?: UseBankOperationsProps) => {
         },
         queryOptions: {
             queryKey: [bankName, 'operations', rest?.accountId ?? '', rest?.from ?? '', rest?.to ?? ''],
-            enabled: !!bankName,
+            enabled: !!AVAILABLE_BANKS[bankName as keyof typeof AVAILABLE_BANKS],
         }
     })
 }

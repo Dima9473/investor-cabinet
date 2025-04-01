@@ -1,4 +1,4 @@
-import { OperationsDTO } from "../../model/types/banks/DTO/operationsDTO";
+import { OperationsDTO } from "../../model/types/bank/DTO/operationsDTO";
 
 export const operationsAdapter = (operations: OperationsDTO) => {
     return {
