@@ -7,6 +7,7 @@ import { App } from '../ui/App';
 import { MainLayout } from '../ui/MainLayout';
 import { Redirect } from '../ui/Redirect/Redirect';
 import { banksConfig } from './configs/banksConfig';
+import { knowledgeCatalogConfig } from './configs/knowledgeCatalog';
 import { loginConfig } from './configs/loginConfig';
 
 import { Routes } from '../model/types/routes';
@@ -22,7 +23,11 @@ const AppRoutes: Routes[] = [
     children: [
       {
         element: <MainLayout />,
-        children: [{ index: true, element: <Redirect /> }, banksConfig],
+        children: [
+          { index: true, element: <Redirect /> },
+          banksConfig,
+          knowledgeCatalogConfig,
+        ],
       },
     ],
   },

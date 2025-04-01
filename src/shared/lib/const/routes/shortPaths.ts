@@ -22,3 +22,9 @@ export const SBER_BANK = 'sber-bank'
  * Home page
  */
 export const HOME = '/'
+
+/**
+ * Knowledge Catalog page
+ */
+export const KNOWLEDGE_CATALOG = 'knowledge-catalog'
+
