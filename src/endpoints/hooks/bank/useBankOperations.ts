@@ -11,7 +11,6 @@ type UseBankOperationsProps = Omit<OperationsRequest, 'bankName'> & {
 }
 
 export const useBankOperations = (props?: UseBankOperationsProps) => {
-
     const { bankName = '', ...rest } = props || {} as UseBankOperationsProps
 
     return useEndpoint({
@@ -26,7 +25,7 @@ export const useBankOperations = (props?: UseBankOperationsProps) => {
         },
         queryOptions: {
             queryKey: [bankName, 'operations', rest?.accountId ?? '', rest?.from ?? '', rest?.to ?? ''],
-            enabled: !!AVAILABLE_BANKS[bankName as keyof typeof AVAILABLE_BANKS],
+            enabled: !!AVAILABLE_BANKS[bankName.toUpperCase() as keyof typeof AVAILABLE_BANKS],
         }
     })
 }

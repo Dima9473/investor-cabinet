@@ -1,5 +1,5 @@
 export enum AVAILABLE_BANKS {
-    T_BANK = 't-bank',
+    'T-BANK' = 't-bank',
     //TODO: add other banks
     // SBER = 'sber',
     // VTB = 'vtb',
