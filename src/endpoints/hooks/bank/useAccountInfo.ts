@@ -1,11 +1,10 @@
-import { AVAILABLE_BANKS } from "endpoints/lib/constants/availableBanks";
 import { CLUSTERS } from "endpoints/lib/constants/clasters";
+import { isBankAbailable } from "endpoints/lib/isBankAbailable";
 
 import { useEndpoint } from "../useEndpoint";
 
 import { Accounts } from "../../model/types/bank/accounts";
 import { AccountsDTO } from "../../model/types/bank/DTO/accountsDTO";
-
 export const useAccountInfo = (bankName: string) => {
     return useEndpoint({
         queryFnOptions: {
@@ -18,7 +17,8 @@ export const useAccountInfo = (bankName: string) => {
         },
         queryOptions: {
             queryKey: [bankName, 'accounts'],
-            enabled: !!AVAILABLE_BANKS[bankName.toUpperCase() as keyof typeof AVAILABLE_BANKS],
+            enabled: !!bankName,
+            retry: isBankAbailable(bankName) ? 3 : false,
         }
     })
 }

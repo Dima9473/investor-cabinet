@@ -4,6 +4,7 @@ export type TableProps<T> = {
   data: T[];
   columns?: ColumnDef<T>[];
   keys?: string[];
+  showFooter?: boolean;
 };
 
 

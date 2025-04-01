@@ -10,7 +10,7 @@ import { getTableColumns } from '../../lib/getTableColumns';
 import { TableProps } from '../../model/types/table';
 
 export const DataTable = React.memo(<T,>(props: TableProps<T>) => {
-  const { data, columns } = props;
+  const { data, columns, showFooter = false } = props;
   const innerColumns = getTableColumns({ data, columns });
 
   const table = useReactTable({
@@ -49,22 +49,24 @@ export const DataTable = React.memo(<T,>(props: TableProps<T>) => {
             </tr>
           ))}
         </tbody>
-        <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext(),
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
+        {showFooter && (
+          <tfoot>
+            {table.getFooterGroups().map((footerGroup) => (
+              <tr key={footerGroup.id}>
+                {footerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.footer,
+                          header.getContext(),
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </tfoot>
+        )}
       </table>
     </div>
   );

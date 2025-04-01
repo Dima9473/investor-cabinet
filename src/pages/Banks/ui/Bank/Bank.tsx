@@ -1,3 +1,4 @@
+import { isBankAbailable } from 'endpoints/lib/isBankAbailable';
 import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
@@ -28,7 +29,7 @@ export const Bank = () => {
       : undefined,
   );
 
-  if (operationsFetching) {
+  if (operationsFetching && isBankAbailable(bankName)) {
     return <>Loading...</>;
   }
 
