@@ -1,7 +1,8 @@
 import { useTheme } from 'lib/useTheme';
-import { Link, Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 
 import { KNOWLEDGE_CATALOG } from 'shared/lib/const/routes/shortPaths';
+import { NavLink } from 'shared/ui/NavLink';
 import { Banks } from '../Banks';
 
 import styles from './MainLayout.module.css';
@@ -15,7 +16,7 @@ export const MainLayout = () => {
         MainLayout
         <button onClick={changeTheme}>Change theme</button>
         <Banks />
-        <Link to={KNOWLEDGE_CATALOG}>Knowledge Catalog</Link>
+        <NavLink to={KNOWLEDGE_CATALOG}>Knowledge Catalog</NavLink>
       </div>
       <div className={styles.content}>
         <Outlet />

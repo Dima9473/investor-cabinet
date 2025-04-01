@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
@@ -37,7 +38,9 @@ export const Controls = (props: ControlsProps) => {
     <div className={styles.controls}>
       <SelectPeriod />
       <SelectAccount accounts={accounts} />
-      <button onClick={refetchOperations}>обновить данные</button>
+      <Button variant="contained" color="primary" onClick={refetchOperations}>
+        обновить данные
+      </Button>
     </div>
   );
 };

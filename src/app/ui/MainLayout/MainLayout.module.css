@@ -1,16 +1,20 @@
 .container {
-    background-color: var(--background-color);
     min-height: 100vh;
     height: 100%;
     display: flex;
     flex-grow: 1;
+    overflow-x: auto;
 }
 
 .sidebar {
-    border: 1px solid red;
+    background-color: var(--color-light-bg-secondary);    
     min-width: 150px;
+    overflow: hidden;
 }
 
 .content {
     width: 100%;
+    padding-top: var(--gap-16);
+    background-color: var(--color-light-bg-primary);
+    overflow-x: auto;
 }

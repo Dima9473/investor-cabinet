@@ -1,0 +1,17 @@
+:root {
+    /* paddings */
+    --padding-2: 2px;
+    --padding-4: 4px;
+    --padding-8: 8px;
+    --padding-16: 16px;
+    --padding-32: 32px;
+    --padding-64: 64px;
+
+    /* gaps */
+    --gap-2: 2px;
+    --gap-4: 4px;
+    --gap-8: 8px;
+    --gap-16: 16px;
+    --gap-32: 32px;
+    --gap-64: 64px;
+}
