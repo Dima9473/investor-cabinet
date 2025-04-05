@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
 import { DataTable } from 'shared/ui/DataTable';
+import { PageLoading } from 'shared/ui/PageLoading';
+import { Text } from 'shared/ui/Typography';
 import { Controls } from 'widgets/Bank/ui/Controls';
 import { getOperationsParams } from '../../lib/getOperationsParams';
 
@@ -30,7 +32,7 @@ export const Bank = () => {
   );
 
   if (operationsFetching && isBankAbailable(bankName)) {
-    return <>Loading...</>;
+    return <PageLoading />;
   }
 
   return (
@@ -38,8 +40,10 @@ export const Bank = () => {
       <div className={styles.controls}>
         <Controls refetchOperations={refetch} />
       </div>
-      {account?.name}
-      {dataOperations && <DataTable data={dataOperations.operations} />}
+      <Text color="secondary">{account?.name}</Text>
+      {dataOperations && (
+        <DataTable data={dataOperations.operations} className={styles.table} />
+      )}
     </>
   );
 };

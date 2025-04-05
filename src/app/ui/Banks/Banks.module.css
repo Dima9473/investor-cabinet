@@ -1,9 +1,14 @@
-.link {
-    text-decoration: none;    
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-8);
+}
 
-    display: block;
-    margin-top: var(--padding-12);
-    margin-right: var(--padding-16);
-    margin-bottom: var(--padding-12);
-    margin-left: var(--padding-16);
+.link {
+    justify-content: flex-start;
+    white-space: nowrap;
+}
+
+.icon {
+    color: var(--color-light-icon-secondary);
 }

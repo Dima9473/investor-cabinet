@@ -1,9 +1,20 @@
 .link {
     text-decoration: none;    
 
-    display: block;
-    margin-top: var(--padding-12);
-    margin-right: var(--padding-16);
-    margin-bottom: var(--padding-12);
-    margin-left: var(--padding-16);
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius-8);
+
+    color: var(--color-light-text-secondary);
+    
+    height: 50px;
+
+    padding-right: var(--padding-16);
+    padding-left: var(--padding-16);
 }
+
+.isActive {
+    color: var(--color-light-text-primary);
+    background-color: var(--color-light-bg-primary);
+}
+

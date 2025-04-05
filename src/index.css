@@ -14,7 +14,7 @@
 .root {
   display: flex;
   flex-grow: 1;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -22,5 +22,5 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
 }

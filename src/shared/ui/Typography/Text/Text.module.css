@@ -1,0 +1,17 @@
+.text-primary {
+  color: var(--color-light-text-primary);
+}
+
+.text-secondary {
+    color: var(--color-light-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-light-text-tertiary);
+}
+
+.text-quaternary {
+  color: var(--color-light-text-quaternary);
+}
+
+

@@ -1,3 +1,9 @@
 .controls {
     display: flex;
 }
+
+.table {
+    color: var(--color-light-text-secondary);   
+}
+
+

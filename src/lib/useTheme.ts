@@ -19,6 +19,8 @@ export const useTheme = () => {
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('data-theme', theme);
+
+    return theme;
   }, []);
 
   return { initTheme, changeTheme };

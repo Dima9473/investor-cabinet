@@ -10,7 +10,12 @@ export const NavLink = (props: RouterLinkProps) => {
   const { children, className, ...rest } = props;
 
   return (
-    <RouterLink {...rest} className={classNames(styles.link, className)}>
+    <RouterLink
+      className={({ isActive }) =>
+        classNames(className, styles.link, isActive && styles.isActive)
+      }
+      {...rest}
+    >
       {children}
     </RouterLink>
   );

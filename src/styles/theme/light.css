@@ -40,4 +40,12 @@
     
     --color-light-bg-primary: var(--color-primary-12);
     --color-light-bg-secondary: var(--color-gray-0);
+
+    --color-light-text-primary: var(--color-primary);
+    --color-light-text-secondary: var(--color-gray-7);
+
+    --color-light-icon-primary: var(--color-gray-11);
+    --color-light-icon-secondary: var(--color-gray-7);
+
+    --color-light-border-primary: var(--color-gray-3);
 }
