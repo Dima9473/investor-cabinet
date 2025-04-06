@@ -10,19 +10,12 @@ import styles from './Banks.module.css';
 
 export const Banks = () => {
   return (
-    <Accordion.Root
-      style={{ boxShadow: 'none' }}
-      sx={{
-        backgroundColor: 'var(--color-light-bg-secondary)',
-      }}
-      disableGutters
-      defaultExpanded
-    >
+    <Accordion.Root defaultExpanded>
       <Accordion.Summary>
         <Text color="secondary">Брокеры</Text>
       </Accordion.Summary>
       <Accordion.Details className={styles.links}>
-        <Accordion.Root>
+        <Accordion.Root defaultExpanded>
           <Accordion.Summary>
             <Text color="secondary">Т Инвестиции</Text>
           </Accordion.Summary>

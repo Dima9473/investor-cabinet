@@ -1,4 +1,4 @@
-import { AVAILABLE_BANKS } from './constants/availableBanks';
+import { BANKS } from 'lib/constants/banks';
 
-export const isBankAbailable = (bankName: string) => AVAILABLE_BANKS[bankName.toUpperCase() as keyof typeof AVAILABLE_BANKS]
+export const isBankAbailable = (bankName: string) => BANKS[bankName.toUpperCase() as keyof typeof BANKS]
 
