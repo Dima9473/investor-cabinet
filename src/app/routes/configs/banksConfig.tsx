@@ -1,6 +1,6 @@
 import { T_BANK_ROUTE } from 'shared/lib/const/routes/fullPaths';
 import { BANKS, T_BANK } from 'shared/lib/const/routes/shortPaths';
-import { Bank } from 'pages/Banks';
+import { Bank } from 'pages/Bank';
 import { Redirect } from '../../ui/Redirect/Redirect';
 
 import { Routes } from '../../model/types/routes';

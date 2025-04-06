@@ -8,7 +8,6 @@ type UseBankOperationsParams = Omit<OperationsRequest, 'from' | 'to'> & {
     bankName: string
 }
 
-
 export const getOperationsParams = (params: UseBankOperationsParams) => {
     const { from, to, accountId, state, bankName, figi } = params;
 

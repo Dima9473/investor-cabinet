@@ -4,7 +4,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
-import * as React from 'react';
+import { memo, useMemo } from 'react';
 
 import { getTableColumns } from '../../lib/getTableColumns';
 
@@ -12,9 +12,12 @@ import { TableProps } from '../../model/types/table';
 
 import styles from './DataTable.module.css';
 
-export const DataTable = React.memo(<T,>(props: TableProps<T>) => {
+const DataTableComponent = <TData,>(props: TableProps<TData>) => {
   const { data, columns, showFooter = false, className } = props;
-  const innerColumns = getTableColumns({ data, columns });
+  const innerColumns = useMemo(
+    () => getTableColumns({ data, columns }),
+    [data, columns],
+  );
 
   const table = useReactTable({
     data,
@@ -86,9 +89,6 @@ export const DataTable = React.memo(<T,>(props: TableProps<T>) => {
       )}
     </table>
   );
-});
+};
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error('Failed to find the root element');
-}
+export const DataTable = memo(DataTableComponent) as typeof DataTableComponent;
