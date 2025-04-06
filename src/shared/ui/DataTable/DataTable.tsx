@@ -37,6 +37,7 @@ const DataTableComponent = <TData,>(props: TableProps<TData>) => {
                 key={header.id}
                 colSpan={header.colSpan}
                 style={{ position: 'relative', width: header.getSize() }}
+                className={styles.head}
               >
                 {header.isPlaceholder
                   ? null
@@ -62,7 +63,11 @@ const DataTableComponent = <TData,>(props: TableProps<TData>) => {
         {table.getRowModel().rows.map((row) => (
           <tr key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} style={{ width: cell.column.getSize() }}>
+              <td
+                key={cell.id}
+                style={{ width: cell.column.getSize() }}
+                className={styles.cell}
+              >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
@@ -74,7 +79,7 @@ const DataTableComponent = <TData,>(props: TableProps<TData>) => {
           {table.getFooterGroups().map((footerGroup) => (
             <tr key={footerGroup.id}>
               {footerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <th key={header.id} className={styles.head}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(

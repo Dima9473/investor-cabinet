@@ -1,4 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { CURRENCY } from 'lib/constants/currency';
+import { INSTRUMENT_TYPES } from 'lib/constants/instrymentTypes';
 
 import { OperationColumns } from 'entities/bank/model/types/operationColumns';
 import { formatCurrency } from '../formatCurrency';
@@ -17,6 +19,10 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
   {
     accessorKey: 'instrumentType',
     header: 'Тип инструмента',
+    cell: ({ row }) => {
+      const type = row.getValue('instrumentType') as string;
+      return INSTRUMENT_TYPES[type as keyof typeof INSTRUMENT_TYPES];
+    },
   },
   {
     accessorKey: 'quantity',
@@ -41,5 +47,10 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
   {
     accessorKey: 'currency',
     header: 'Валюта',
+    cell: ({ row }) => {
+      const currency = row.getValue('currency') as string;
+      return CURRENCY[currency as keyof typeof CURRENCY];
+    },
   }
+
 ]; 
