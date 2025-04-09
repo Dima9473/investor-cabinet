@@ -3,16 +3,27 @@
  */
 export const APP_ROUTER = '/'
 
+/**
+ * Auth
+ */
 export const AUTH_ROUTE = '/auth'
 
-export const BANKS_ROUTE = '/banks'
+/**
+ * Bank
+ */
+export const BANK_ROUTE = '/bank'
 
-// Banks
-export const BANK_ROUTE = '/banks/:bankName'
-export const BANK_OPERATIONS_ROUTE = '/banks/:bankName/operations'
+/**
+ * Operations
+ */
+export const OPERATIONS_ROUTE = `${BANK_ROUTE}/operations`
 
-// T Bank
-export const T_BANK_OPERATIONS_ROUTE = '/banks/t-bank/operations'
+/**
+ * Analytics
+ */
+export const ANALYTICS_ROUTE = `${BANK_ROUTE}/analytics`
 
-// Sber Bank
-export const SBER_BANK_OPERATIONS_ROUTE = '/banks/sber-bank/operations'
+/**
+ * Journal
+ */
+export const JOURNAL_ROUTE = `${BANK_ROUTE}/journal`

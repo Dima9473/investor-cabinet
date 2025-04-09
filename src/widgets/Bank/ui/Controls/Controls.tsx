@@ -1,6 +1,4 @@
-import { Button } from '@mui/material';
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
 import { SelectAccount } from 'features/Bank/ui/SelectAccount';
@@ -11,18 +9,12 @@ import { useAccountInfo } from 'endpoints/hooks/bank/useAccountInfo';
 
 import styles from './Controls.module.css';
 
-type ControlsProps = {
-  refetchOperations: () => void;
-};
+export const Controls = () => {
+  const { setAccount, setAccounts, bankId } = useStore();
 
-export const Controls = (props: ControlsProps) => {
-  const { refetchOperations } = props;
-  const { setAccount, setAccounts } = useStore();
-
-  const { bankName = '' } = useParams();
-
+  console.log(bankId);
   const { data: accounts, isFetched: isAccountsFetched } =
-    useAccountInfo(bankName);
+    useAccountInfo(bankId);
 
   useEffect(() => {
     if (isAccountsFetched) {
@@ -31,18 +23,11 @@ export const Controls = (props: ControlsProps) => {
     }
   }, [accounts, isAccountsFetched, setAccounts, setAccount]);
 
-  if (!accounts?.length) {
-    return <div>Нет счетов</div>;
-  }
-
   return (
     <div className={styles.controls}>
       <SelectBank />
       <SelectPeriod />
-      <SelectAccount accounts={accounts} />
-      <Button variant="contained" color="primary" onClick={refetchOperations}>
-        обновить данные
-      </Button>
+      <SelectAccount accounts={accounts ?? []} />
     </div>
   );
 };

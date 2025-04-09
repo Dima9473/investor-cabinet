@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 import { createWithEqualityFn } from 'zustand/traditional';
 
 import { accountsSlice } from './slices/accounts';
+import { bankSlice } from './slices/bankSlice';
 import { operationsSlice } from './slices/operationsSlice';
 import { userSlice } from './slices/userSlice';
 
@@ -13,7 +14,8 @@ import { StoreCreater } from 'model/types/store/storeCreater';
 export const store: StoreCreater<RootStore> = (...storeArgs) => ({
     ...userSlice(...storeArgs),
     ...operationsSlice(...storeArgs),
-    ...accountsSlice(...storeArgs)
+    ...accountsSlice(...storeArgs),
+    ...bankSlice(...storeArgs)
 })
 
 export const useStore = createWithEqualityFn<RootStore>()(

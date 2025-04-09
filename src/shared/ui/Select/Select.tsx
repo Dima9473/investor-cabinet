@@ -14,7 +14,7 @@ export type SelectProps<T> = {
   value?: string;
   label?: string;
   options: SelectOption<T>[];
-  onChange?: (value?: T) => void;
+  onChange?: (value?: SelectOption<T>) => void;
 };
 
 export const Select = <T,>(props: SelectProps<T>) => {
@@ -25,7 +25,7 @@ export const Select = <T,>(props: SelectProps<T>) => {
   const handleChange = (event: SelectChangeEvent) => {
     const option = options.find((option) => option.id === event.target.value);
     setInnerValue(event.target.value as string);
-    onChange?.(option?.option);
+    onChange?.(option);
   };
 
   useEffect(() => {

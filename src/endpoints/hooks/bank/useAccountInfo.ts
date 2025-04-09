@@ -5,10 +5,10 @@ import { useEndpoint } from "../useEndpoint";
 
 import { Accounts } from "../../model/types/bank/accounts";
 import { AccountsDTO } from "../../model/types/bank/DTO/accountsDTO";
-export const useAccountInfo = (bankName: string) => {
+export const useAccountInfo = (bankId: string) => {
     return useEndpoint({
         queryFnOptions: {
-            paths: ['accounts', bankName],
+            paths: ['accounts', bankId],
             cluster: CLUSTERS.BANKS,
             options: {
                 method: 'POST'
@@ -16,9 +16,9 @@ export const useAccountInfo = (bankName: string) => {
             mapper: (data: AccountsDTO): Accounts => data
         },
         queryOptions: {
-            queryKey: [bankName, 'accounts'],
-            enabled: !!bankName,
-            retry: isBankAbailable(bankName) ? 3 : false,
+            queryKey: [bankId, 'accounts'],
+            enabled: !!bankId,
+            retry: isBankAbailable(bankId) ? 3 : false,
         }
     })
 }

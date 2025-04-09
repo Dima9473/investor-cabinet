@@ -5,21 +5,20 @@ import { useStore } from 'store/useStore';
 import { DataTable } from 'shared/ui/DataTable';
 import { PageLoading } from 'shared/ui/PageLoading';
 import { operationColumns } from 'entities/bank/lib/constants/operationColumns';
-import { Controls } from 'widgets/Bank/ui/Controls';
 import { getOperationsParams } from '../../../../entities/bank/lib/getOperationsParams';
 
 import { useBankOperations } from 'endpoints/hooks/bank/useBankOperations';
 
-import styles from './Bank.module.css';
+import styles from './Operation.module.css';
 
-export const Bank = () => {
+export const Operation = () => {
   const { from, to, account } = useStore();
   const { bankName = '' } = useParams();
 
   const {
     data: dataOperations,
     isFetching: operationsFetching,
-    refetch,
+    // refetch,
   } = useBankOperations(
     account
       ? getOperationsParams({
@@ -37,9 +36,9 @@ export const Bank = () => {
 
   return (
     <>
-      <div className={styles.controls}>
+      {/* <div className={styles.controls}>
         <Controls refetchOperations={refetch} />
-      </div>
+      </div> */}
       {dataOperations && (
         <DataTable
           data={dataOperations.operations}
@@ -51,4 +50,4 @@ export const Bank = () => {
   );
 };
 
-Bank.displayName = 'Bank';
+Operation.displayName = 'Operation';

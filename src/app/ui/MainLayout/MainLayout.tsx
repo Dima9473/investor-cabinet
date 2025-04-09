@@ -5,10 +5,14 @@ import { useTheme } from 'lib/useTheme';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
+import {
+  ANALYTICS_ROUTE,
+  JOURNAL_ROUTE,
+  OPERATIONS_ROUTE,
+} from 'shared/lib/const/routes/fullPaths';
 import { KNOWLEDGE_CATALOG } from 'shared/lib/const/routes/shortPaths';
 import { NavLink } from 'shared/ui/NavLink';
 import { Text } from 'shared/ui/Typography';
-import { Banks } from '../Banks';
 
 import styles from './MainLayout.module.css';
 
@@ -44,7 +48,10 @@ export const MainLayout = () => {
           )}
         </div>
         <div className={styles.links}>
-          <Banks />
+          {/* <Banks /> */}
+          <NavLink to={OPERATIONS_ROUTE}>Операции</NavLink>
+          <NavLink to={ANALYTICS_ROUTE}>Аналитика</NavLink>
+          <NavLink to={JOURNAL_ROUTE}>Дневник</NavLink>
           <NavLink to={KNOWLEDGE_CATALOG}>Knowledge Catalog</NavLink>
         </div>
         <div className={styles.footer}></div>

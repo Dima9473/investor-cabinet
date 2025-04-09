@@ -4,19 +4,24 @@
 export const AUTH = 'auth'
 
 /**
- * Banks page
+ * Bank page
  */
-export const BANKS = 'banks'
+export const BANK = 'bank'
 
 /**
- * T-Bank page
- */
-export const T_BANK_OPERATIONS = ':bankName/operations'
+ * Operations page
+ */ 
+export const OPERATIONS = 'operations'
 
 /**
- * SberBank page
+ * Analytics page
  */
-export const SBER_BANK = 'sber-bank'
+export const ANALYTICS = 'analytics'
+
+/**
+ * Journal page
+ */
+export const JOURNAL = 'journal'
 
 /**
  * Home page

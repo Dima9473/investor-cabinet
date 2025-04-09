@@ -1,24 +1,36 @@
-import { T_BANK_OPERATIONS_ROUTE } from 'shared/lib/const/routes/fullPaths';
-import { BANKS, T_BANK_OPERATIONS } from 'shared/lib/const/routes/shortPaths';
-import { Bank } from 'pages/Bank';
+import { BankLayout } from 'app/ui/BankLayout';
+
+import { OPERATIONS_ROUTE } from 'shared/lib/const/routes/fullPaths';
+import {
+  ANALYTICS,
+  BANK,
+  JOURNAL,
+  OPERATIONS,
+} from 'shared/lib/const/routes/shortPaths';
+import { Analytics, Journal, Operation } from 'pages/Bank';
 import { Redirect } from '../../ui/Redirect/Redirect';
 
 import { Routes } from '../../model/types/routes';
 
 export const banksConfig: Routes = {
-  path: BANKS,
+  path: BANK,
+  element: <BankLayout />,
   children: [
-    { index: true, element: <Redirect redirect={T_BANK_OPERATIONS_ROUTE} /> },
+    { index: true, element: <Redirect redirect={OPERATIONS_ROUTE} /> },
     {
       children: [
         {
-          path: T_BANK_OPERATIONS,
-          element: <Bank />,
+          path: OPERATIONS,
+          element: <Operation />,
         },
-        // {
-        //   path: T_BANK_OPERATIONS_ROUTE,
-        //   element: <BankOperations />,
-        // },
+        {
+          path: ANALYTICS,
+          element: <Analytics />,
+        },
+        {
+          path: JOURNAL,
+          element: <Journal />,
+        },
       ],
     },
   ],
