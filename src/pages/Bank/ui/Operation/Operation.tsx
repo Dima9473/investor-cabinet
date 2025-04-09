@@ -1,5 +1,4 @@
 import { isBankAbailable } from 'endpoints/lib/isBankAbailable';
-import { useParams } from 'react-router';
 import { useStore } from 'store/useStore';
 
 import { DataTable } from 'shared/ui/DataTable';
@@ -12,25 +11,21 @@ import { useBankOperations } from 'endpoints/hooks/bank/useBankOperations';
 import styles from './Operation.module.css';
 
 export const Operation = () => {
-  const { from, to, account } = useStore();
-  const { bankName = '' } = useParams();
+  const { from, to, account, bankId } = useStore();
 
-  const {
-    data: dataOperations,
-    isFetching: operationsFetching,
-    // refetch,
-  } = useBankOperations(
-    account
-      ? getOperationsParams({
-          accountId: account.id,
-          from: from,
-          to: to,
-          bankName,
-        })
-      : undefined,
-  );
+  const { data: dataOperations, isFetching: operationsFetching } =
+    useBankOperations(
+      account
+        ? getOperationsParams({
+            accountId: account.id,
+            from: from,
+            to: to,
+            bankName: bankId,
+          })
+        : undefined,
+    );
 
-  if (operationsFetching && isBankAbailable(bankName)) {
+  if (operationsFetching && isBankAbailable(bankId)) {
     return <PageLoading />;
   }
 
