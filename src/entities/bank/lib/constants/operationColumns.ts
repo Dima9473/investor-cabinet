@@ -10,11 +10,14 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
   {
     accessorKey: 'date',
     header: 'Дата',
-    cell: ({ row }) => formatDate(row.getValue('date')),
+    cell: ({ row }) => formatDate(row.getValue('date')),    
   },
   {
     accessorKey: 'type',
     header: 'Тип операции',
+    meta: {
+      filterVariant: 'autocomplete',
+    },
   },
   {
     accessorKey: 'instrumentType',
@@ -22,6 +25,9 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
     cell: ({ row }) => {
       const type = row.getValue('instrumentType') as string;
       return INSTRUMENT_TYPES[type as keyof typeof INSTRUMENT_TYPES];
+    },   
+     meta: {
+      filterVariant: 'autocomplete',
     },
   },
   {
@@ -41,7 +47,7 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
     header: 'Сумма',
     cell: ({ row }) => {
       const payment = row.getValue('payment') as { units: string; nano: number; currency: string };
-      return formatCurrency(payment.units, payment.nano, payment.currency);
+      return formatCurrency(payment.units, payment.nano, payment.currency);      
     },
   },
   {
@@ -50,6 +56,9 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
     cell: ({ row }) => {
       const currency = row.getValue('currency') as string;
       return CURRENCY[currency as keyof typeof CURRENCY];
+    },
+    meta: {
+      filterVariant: 'autocomplete',
     },
   }
 

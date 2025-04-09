@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router';
 
 import { Controls } from 'widgets/Bank';
+
+import styles from './BankLayout.module.css';
+
 export const BankLayout = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Controls />
       <Outlet />
     </div>
