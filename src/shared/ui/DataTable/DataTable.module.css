@@ -3,12 +3,3 @@
     white-space: nowrap;
 }
 
-.head {
-    text-align: center;
-    padding: var(--padding-8);
-}
-
-.cell {
-    padding: var(--padding-8);
-    text-align: right;
-}

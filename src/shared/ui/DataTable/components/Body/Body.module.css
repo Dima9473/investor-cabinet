@@ -1,0 +1,4 @@
+.cell {
+    padding: var(--padding-8);
+    text-align: right;
+}

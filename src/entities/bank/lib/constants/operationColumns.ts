@@ -24,9 +24,21 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
     header: 'Тип инструмента',
     cell: ({ row }) => {
       const type = row.getValue('instrumentType') as string;
+
       return INSTRUMENT_TYPES[type as keyof typeof INSTRUMENT_TYPES];
     },   
      meta: {
+      filterVariant: 'autocomplete',
+    },
+  },
+  {
+    accessorKey: 'currency',
+    header: 'Валюта',
+    cell: ({ row }) => {
+      const currency = row.getValue('currency') as string;
+      return CURRENCY[currency as keyof typeof CURRENCY];
+    },
+    meta: {
       filterVariant: 'autocomplete',
     },
   },
@@ -50,16 +62,5 @@ export const operationColumns: ColumnDef<OperationColumns>[] = [
       return formatCurrency(payment.units, payment.nano, payment.currency);      
     },
   },
-  {
-    accessorKey: 'currency',
-    header: 'Валюта',
-    cell: ({ row }) => {
-      const currency = row.getValue('currency') as string;
-      return CURRENCY[currency as keyof typeof CURRENCY];
-    },
-    meta: {
-      filterVariant: 'autocomplete',
-    },
-  }
-
 ]; 
+
