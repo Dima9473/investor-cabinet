@@ -1,3 +1,18 @@
+.control {
+  display: grid;
+  gap: 5px;
+  min-width: 120px;
+}
+
+.control span {
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
 .select {
-    height: 40px;
-}   
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface-elevated);
+}

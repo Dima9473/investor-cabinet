@@ -1,54 +1,42 @@
-# React + TypeScript + Vite
+# Кабинет инвестора
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Адаптивный read-only интерфейс для просмотра счетов, портфеля, операций и аналитики T‑Банка. В приложении нет выставления или отмены заявок и других финансовых действий.
 
-Currently, two official plugins are available:
+## Запуск
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+cp .env.example .env.local
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Переменные окружения:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `VITE_API_URL` — адрес `investor-cabinet-middle`, локально `http://localhost:3000`;
+- `VITE_DEMO_MODE=true` — явное включение демо-данных;
+- `VITE_DEV_HTTPS=true` — опциональный локальный HTTPS через mkcert;
+- `VITE_BASE_PATH` — базовый путь публикации, по умолчанию `/`.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+В `.env.development` демо-режим включён для локальной разработки. В production отсутствие `VITE_API_URL` приводит к видимой ошибке конфигурации и не подменяет данные демо-набором.
+
+При сборке через Docker Compose эти переменные передаются как build args. Их можно переопределить через окружение; по умолчанию UI обращается к `http://localhost:3000`.
+
+## Страницы
+
+- `/overview` — сводка;
+- `/portfolio` — позиции и распределение активов;
+- `/operations` — read-only история, фильтры, cursor-пагинация и экспорт текущей страницы в CSV;
+- `/analytics` — выплаты, риск и явно маркированная оценка динамики текущего состава;
+- `/knowledge-catalog` — справочник терминов и методологии.
+
+## UI foundation
+
+Переиспользуемые атомы и молекулы находятся в `src/shared/ui`, токены — в `src/theme/tokens.css`, светлая и тёмная палитры — в `src/theme`. Пока у компонентов один потребитель, они остаются в этом репозитории. После появления второго приложения этот доменно-независимый слой можно вынести в отдельный пакет дизайн-системы.
+
+## Проверки
+
+```bash
+npm run lint -- --max-warnings=0
+npm run build
+npm audit --omit=dev
 ```

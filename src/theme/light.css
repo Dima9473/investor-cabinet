@@ -1,4 +1,20 @@
-[data-theme="light"] {
-    --background-color: red;
-    --text-color: #000000;
+[data-theme='light'] {
+  color-scheme: light;
+  --background: #f3f6fb;
+  --surface: #ffffff;
+  --surface-elevated: #f8faff;
+  --surface-control: #eef2f8;
+  --border: #e3e8f1;
+  --text-primary: #151a2d;
+  --text-secondary: #687186;
+  --text-tertiary: #969eb0;
+  --color-primary: #3487f6;
+  --color-primary-strong: #5662ee;
+  --color-accent: #35bfdc;
+  --color-success: #079d80;
+  --color-warning: #ed8b20;
+  --color-danger: #d34f62;
+  --color-purple: #8259df;
+  --card-shadow: 0 8px 24px rgba(35, 51, 82, 0.07);
+  --overlay-shadow: 0 20px 55px rgba(35, 51, 82, 0.16);
 }

@@ -1,12 +1,12 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000}
+        VITE_DEMO_MODE: ${VITE_DEMO_MODE:-false}
+        VITE_BASE_PATH: ${VITE_BASE_PATH:-/}
     ports:
       - "9001:9001"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped 
+    restart: unless-stopped

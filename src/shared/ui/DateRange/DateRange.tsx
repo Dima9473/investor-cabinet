@@ -1,7 +1,4 @@
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import styles from './DateRange.module.css';
 
@@ -32,24 +29,35 @@ export const DateRange = (props: DateRangeProps) => {
     onChange?.(innerFrom, date);
   };
 
+  const toInputValue = (date?: Date | null) => {
+    if (!date || Number.isNaN(date.getTime())) {
+      return '';
+    }
+
+    return date.toISOString().slice(0, 10);
+  };
+
+  const fromInputValue = (event: ChangeEvent<HTMLInputElement>) =>
+    event.target.value ? new Date(`${event.target.value}T00:00:00`) : null;
+
   return (
     <div className={styles.container}>
-      {String(innerFrom)}
-      {innerTo?.toLocaleDateString()}
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DatePicker
-          label="From"
-          defaultValue={innerFrom}
-          value={innerFrom}
-          onChange={handleChangeFrom}
+      <label>
+        <span>С</span>
+        <input
+          onChange={(event) => handleChangeFrom(fromInputValue(event))}
+          type="date"
+          value={toInputValue(innerFrom)}
         />
-        <DatePicker
-          label="To"
-          defaultValue={innerTo}
-          value={innerTo}
-          onChange={handleChangeTo}
+      </label>
+      <label>
+        <span>По</span>
+        <input
+          onChange={(event) => handleChangeTo(fromInputValue(event))}
+          type="date"
+          value={toInputValue(innerTo)}
         />
-      </LocalizationProvider>
+      </label>
     </div>
   );
 };
