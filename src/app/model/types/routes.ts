@@ -1,5 +1,5 @@
-import { RouteObject } from "react-router"
+import { RouteObject } from 'react-router';
 
 export type Routes = RouteObject & {
-    children?: Routes;
-}
+  children?: Routes[];
+};

@@ -1,43 +1,49 @@
-import { ProtectedRoute } from 'app/ui/ProtectedRoute';
 import { Navigate } from 'react-router';
 
-import { APP_ROUTER } from 'shared/lib/const/routes/fullPaths';
-import { AUTH } from 'shared/lib/const/routes/shortPaths';
+import {
+  ANALYTICS_ROUTE,
+  APP_ROUTER,
+  KNOWLEDGE_CATALOG_ROUTE,
+  OPERATIONS_ROUTE,
+  OVERVIEW_ROUTE,
+  PORTFOLIO_ROUTE,
+} from 'shared/lib/const/routes/fullPaths';
+import { Analytics } from 'pages/Analytics';
+import { KnowledgeCatalog } from 'pages/KnowledgeCatalog/ui/KnowledgeCatalog';
+import { Operations } from 'pages/Operations';
+import { Overview } from 'pages/Overview';
+import { Portfolio } from 'pages/Portfolio';
 import { App } from '../ui/App';
 import { MainLayout } from '../ui/MainLayout';
-import { Redirect } from '../ui/Redirect/Redirect';
-import { banksConfig } from './configs/banksConfig';
-import { knowledgeCatalogConfig } from './configs/knowledgeCatalog';
-import { loginConfig } from './configs/loginConfig';
 
 import { Routes } from '../model/types/routes';
 
 const AppRoutes: Routes[] = [
   {
     path: APP_ROUTER,
-    element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
-    ),
+    element: <App />,
     children: [
       {
         element: <MainLayout />,
         children: [
-          { index: true, element: <Redirect /> },
-          banksConfig,
-          knowledgeCatalogConfig,
+          { index: true, element: <Navigate replace to={OVERVIEW_ROUTE} /> },
+          { element: <Overview />, path: OVERVIEW_ROUTE.slice(1) },
+          { element: <Portfolio />, path: PORTFOLIO_ROUTE.slice(1) },
+          { element: <Operations />, path: OPERATIONS_ROUTE.slice(1) },
+          { element: <Analytics />, path: ANALYTICS_ROUTE.slice(1) },
+          {
+            element: <KnowledgeCatalog />,
+            path: KNOWLEDGE_CATALOG_ROUTE.slice(1),
+          },
+          { element: <Navigate replace to={PORTFOLIO_ROUTE} />, path: 'banks' },
+          { element: <Navigate replace to={PORTFOLIO_ROUTE} />, path: 'banks/:bankName' },
         ],
       },
     ],
   },
   {
-    path: AUTH,
-    children: loginConfig,
-  },
-  {
     path: '*',
-    element: <Navigate to={APP_ROUTER} replace />,
+    element: <Navigate replace to={OVERVIEW_ROUTE} />,
   },
 ];
 

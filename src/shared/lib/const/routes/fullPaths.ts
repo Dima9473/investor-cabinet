@@ -3,11 +3,8 @@
  */
 export const APP_ROUTER = '/'
 
-export const AUTH_ROUTE = '/auth'
-
-export const BANKS_ROUTE = '/banks'
-
-export const T_BANK_ROUTE = '/banks/t-bank'
-export const SBER_BANK_ROUTE = '/banks/sber-bank'
-
-export const BANK_ROUTE = '/banks/:bankName'
+export const OVERVIEW_ROUTE = '/overview';
+export const PORTFOLIO_ROUTE = '/portfolio';
+export const OPERATIONS_ROUTE = '/operations';
+export const ANALYTICS_ROUTE = '/analytics';
+export const KNOWLEDGE_CATALOG_ROUTE = '/knowledge-catalog';

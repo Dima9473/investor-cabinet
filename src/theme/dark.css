@@ -1,4 +1,20 @@
-[data-theme="dark"] {
-    --background-color: aqua;
-    --text-color: #c1bfbd;
+[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #0d1219;
+  --surface: #191f30;
+  --surface-elevated: #20273a;
+  --surface-control: #252d42;
+  --border: #2b344b;
+  --text-primary: #f5f7fb;
+  --text-secondary: #a2aabd;
+  --text-tertiary: #737d93;
+  --color-primary: #5a88f6;
+  --color-primary-strong: #7a63ed;
+  --color-accent: #41c1df;
+  --color-success: #39c5aa;
+  --color-warning: #ff9c32;
+  --color-danger: #ff7588;
+  --color-purple: #a174ed;
+  --card-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+  --overlay-shadow: 0 20px 55px rgba(0, 0, 0, 0.34);
 }
