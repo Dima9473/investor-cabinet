@@ -1,4 +1,5 @@
 import { flexRender, Table } from '@tanstack/react-table';
+import { Fragment } from 'react';
 
 import { Filter } from '../Filter';
 
@@ -8,37 +9,41 @@ export const Head = <TData,>({ table }: { table: Table<TData> }) => {
   return (
     <thead>
       {table.getHeaderGroups().map((headerGroup) => (
-        <tr key={headerGroup.id}>
-          {headerGroup.headers.map((header) => (
-            <th
-              key={header.id}
-              colSpan={header.colSpan}
-              style={{ position: 'relative', width: header.getSize() }}
-              className={styles.head}
-            >
-              {header.isPlaceholder
-                ? null
-                : flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-              {header.column.getCanResize() && (
-                <div
-                  onMouseDown={header.getResizeHandler()}
-                  onTouchStart={header.getResizeHandler()}
-                  className={`resizer ${
-                    header.column.getIsResizing() ? 'isResizing' : ''
-                  }`}
-                ></div>
-              )}
-              {header.column.getCanFilter() ? (
-                <div>
-                  <Filter column={header.column} />
+        <Fragment key={headerGroup.id}>
+          <tr>
+            {headerGroup.headers.map((header) => (
+              <th
+                key={header.id}
+                colSpan={header.colSpan}
+                className={styles.head}
+              >
+                <div className={styles.title}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </div>
-              ) : null}
-            </th>
-          ))}
-        </tr>
+              </th>
+            ))}
+          </tr>
+          <tr>
+            {headerGroup.headers.map((header) => (
+              <th
+                key={`${header.id}-filter`}
+                colSpan={header.colSpan}
+                className={styles.filterHead}
+              >
+                <div className={styles.filter}>
+                  {header.column.getCanFilter() ? (
+                    <Filter column={header.column} />
+                  ) : null}
+                </div>
+              </th>
+            ))}
+          </tr>
+        </Fragment>
       ))}
     </thead>
   );

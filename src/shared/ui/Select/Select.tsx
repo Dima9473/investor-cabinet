@@ -6,7 +6,7 @@ import {
   Select as MuiSelect,
   SelectChangeEvent,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { SelectOption } from 'shared/model/types/select';
 
@@ -17,10 +17,18 @@ export type SelectProps<T> = {
   onChange?: (value?: SelectOption<T>) => void;
 };
 
+const toSafeSelectValue = (value: string | undefined, options: { id: string }[]) =>
+  value && options.some((option) => option.id === value) ? value : '';
+
 export const Select = <T,>(props: SelectProps<T>) => {
   const { options, label, onChange, value } = props;
 
-  const [innerValue, setInnerValue] = useState<string>(value || '');
+  const safeValue = toSafeSelectValue(value, options);
+  const [innerValue, setInnerValue] = useState<string>(safeValue);
+  const optionIdsKey = useMemo(
+    () => options.map((option) => option.id).join('|'),
+    [options],
+  );
 
   const handleChange = (event: SelectChangeEvent) => {
     const option = options.find((option) => option.id === event.target.value);
@@ -29,8 +37,8 @@ export const Select = <T,>(props: SelectProps<T>) => {
   };
 
   useEffect(() => {
-    setInnerValue(value || '');
-  }, [value]);
+    setInnerValue(toSafeSelectValue(value, options));
+  }, [value, optionIdsKey, options]);
 
   return (
     <Box sx={{ minWidth: 120 }}>

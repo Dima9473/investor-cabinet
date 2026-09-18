@@ -51,7 +51,7 @@ export const MainLayout = () => {
           {/* <Banks /> */}
           <NavLink to={OPERATIONS_ROUTE}>Операции</NavLink>
           <NavLink to={ANALYTICS_ROUTE}>Аналитика</NavLink>
-          <NavLink to={JOURNAL_ROUTE}>Дневник</NavLink>
+          <NavLink to={JOURNAL_ROUTE}>AI-чат</NavLink>
           <NavLink to={KNOWLEDGE_CATALOG}>Knowledge Catalog</NavLink>
         </div>
         <div className={styles.footer}></div>

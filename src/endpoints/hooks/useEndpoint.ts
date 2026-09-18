@@ -24,4 +24,3 @@ export const useEndpoint = <TData, TError, TSelected = TData>(props: UseEndpoint
         queryFn: createFetchFn(queryFnOptions)
     })
 }
-

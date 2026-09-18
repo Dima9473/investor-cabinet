@@ -1,10 +1,47 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import type { Modifier } from '@popperjs/core';
 import { Column } from '@tanstack/react-table';
 import { useMemo } from 'react';
 
 import { Select } from 'shared/ui/Select/Select';
 import { DebouncedInput } from '../DebouncedInput';
+
+/** Минимальная ширина выпадающего списка = ширина поля ввода */
+const matchReferenceMinWidth: Modifier<'matchReferenceMinWidth', object> = {
+  name: 'matchReferenceMinWidth',
+  enabled: true,
+  phase: 'beforeWrite',
+  requires: ['computeStyles'],
+  fn: ({ state }) => {
+    state.styles.popper.minWidth = `${state.rects.reference.width}px`;
+  },
+};
+
+/** Список не уже инпута; при длинном тексте — шире колонки */
+const autocompleteListSlotProps = {
+  popper: {
+    placement: 'bottom-start' as const,
+    modifiers: [matchReferenceMinWidth],
+    sx: {
+      width: 'auto !important',
+    },
+  },
+  paper: {
+    sx: {
+      width: 'max-content',
+      minWidth: '100%',
+      maxWidth: '90vw',
+    },
+  },
+  listbox: {
+    sx: {
+      '& .MuiAutocomplete-option': {
+        whiteSpace: 'nowrap',
+      },
+    },
+  },
+};
 
 /**
  * A filter component for a table column
@@ -92,10 +129,32 @@ export const Filter = <TData,>({
   }
 
   if (filterVariant === 'autocomplete') {
+    const filterValue = (columnFilterValue as string | null) ?? null;
+
     return (
       <Autocomplete
-        renderInput={(params) => <TextField {...params} />}
-        onChange={(_, value) => column.setFilterValue(value)}
+        fullWidth
+        size="small"
+        value={filterValue}
+        slotProps={autocompleteListSlotProps}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            size="small"
+            margin="none"
+            hiddenLabel
+            slotProps={{
+              input: {
+                ...params.InputProps,
+              },
+            }}
+          />
+        )}
+        onChange={(_, value, reason) => {
+          if (reason === 'selectOption' || reason === 'clear') {
+            column.setFilterValue(value);
+          }
+        }}
         options={sortedUniqueValues}
       />
     );

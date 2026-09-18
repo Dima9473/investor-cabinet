@@ -1,7 +1,8 @@
 .controls {
     display: flex;
     gap: 10px;
-    align-items: center;
+    align-items: flex-end;
     flex-wrap: wrap;
+    overflow: visible;
 }
 

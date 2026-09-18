@@ -1,3 +1,4 @@
+import { BANKS } from 'lib/constants/banks';
 import { useEffect } from 'react';
 import { useStore } from 'store/useStore';
 
@@ -10,11 +11,17 @@ import { useAccountInfo } from 'endpoints/hooks/bank/useAccountInfo';
 import styles from './Controls.module.css';
 
 export const Controls = () => {
-  const { setAccount, setAccounts, bankId } = useStore();
+  const { setAccount, setAccounts, bankId, setBankId } = useStore();
 
-  console.log(bankId);
   const { data: accounts, isFetched: isAccountsFetched } =
     useAccountInfo(bankId);
+
+  // После persist в localStorage bankId мог остаться пустым
+  useEffect(() => {
+    if (!bankId) {
+      setBankId(BANKS.T_BANK);
+    }
+  }, [bankId, setBankId]);
 
   useEffect(() => {
     if (isAccountsFetched) {

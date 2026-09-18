@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useStore } from 'store/useStore';
 
 import { Select } from 'shared/ui/Select';
@@ -16,17 +17,21 @@ export const SelectAccount = (props: SelectAccountProps) => {
     setAccount(account);
   };
 
+  const options = useMemo(
+    () =>
+      accounts.map((item) => ({
+        id: item.id,
+        name: item.name || '',
+        value: item,
+      })),
+    [accounts],
+  );
+
   return (
     <Select
       label="Счет"
       value={account?.id}
-      options={
-        accounts?.map((account) => ({
-          id: account.id,
-          name: account.name || '',
-          option: account,
-        })) || []
-      }
+      options={options}
       onChange={handleChangeAccount}
     />
   );

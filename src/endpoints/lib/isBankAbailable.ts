@@ -1,4 +1,8 @@
 import { BANKS } from 'lib/constants/banks';
 
-export const isBankAbailable = (bankName: string) => BANKS[bankName.toUpperCase() as keyof typeof BANKS]
+/** id банка из enum (t-bank), не ключ enum (T_BANK) */
+const AVAILABLE_BANK_IDS = new Set<string>(Object.values(BANKS));
+
+export const isBankAbailable = (bankId: string) =>
+  Boolean(bankId) && AVAILABLE_BANK_IDS.has(bankId);
 

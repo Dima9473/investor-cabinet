@@ -10,7 +10,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
-import { memo, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 
 import { getTableColumns } from '../../lib/getTableColumns';
 import { Body } from './components/Body';
@@ -39,6 +39,13 @@ const DataTableComponent = <TData,>(props: TableProps<TData>) => {
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
+  const handleColumnFiltersChange = useCallback(
+    (updater: ColumnFiltersState | ((old: ColumnFiltersState) => ColumnFiltersState)) => {
+      setColumnFilters(updater);
+    },
+    [],
+  );
+
   const innerColumns = useMemo(
     () => getTableColumns({ data, columns }),
     [data, columns],
@@ -50,19 +57,27 @@ const DataTableComponent = <TData,>(props: TableProps<TData>) => {
     state: {
       columnFilters,
     },
-    onColumnFiltersChange: setColumnFilters,
+    onColumnFiltersChange: handleColumnFiltersChange,
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
     getCoreRowModel: getCoreRowModel(),
-    enableColumnResizing: true,
-    columnResizeMode: 'onChange',
+    // Иначе getRowModel() в рендере асинхронно сбрасывает page index и падает React
+    autoResetPageIndex: false,
   });
+
+  const leafColumns = table.getAllLeafColumns();
+  const columnWidth = `${100 / leafColumns.length}%`;
 
   return (
     <table className={classNames(styles.table, className)}>
+      <colgroup>
+        {leafColumns.map((column) => (
+          <col key={column.id} style={{ width: columnWidth }} />
+        ))}
+      </colgroup>
       <Head table={table} />
       <Body table={table} />
       {showFooter && <Footer table={table} />}

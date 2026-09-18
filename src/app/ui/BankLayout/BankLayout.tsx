@@ -7,8 +7,12 @@ import styles from './BankLayout.module.css';
 export const BankLayout = () => {
   return (
     <div className={styles.container}>
-      <Controls />
-      <Outlet />
+      <div className={styles.toolbar}>
+        <Controls />
+      </div>
+      <div className={styles.content}>
+        <Outlet />
+      </div>
     </div>
   );
 };

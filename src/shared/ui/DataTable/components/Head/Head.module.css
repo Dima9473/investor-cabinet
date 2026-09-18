@@ -1,4 +1,51 @@
-.head {
-    text-align: center;
+.head,
+.filterHead {
     padding: var(--padding-8);
+    vertical-align: top;
+}
+
+.filterHead {
+    padding-top: 0;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Общий контейнер фильтра — фиксированная высота для всех типов полей */
+.filter {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.filter :global(.MuiAutocomplete-root),
+.filter :global(.MuiFormControl-root) {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.filter :global(.MuiInputBase-root) {
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.filter :global(.MuiInputBase-input),
+.filter :global(.MuiAutocomplete-input) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box;
 }

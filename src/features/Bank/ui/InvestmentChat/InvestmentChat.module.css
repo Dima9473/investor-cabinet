@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: var(--gap-12);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-8);
+  flex-shrink: 0;
+}
+
+.messages {
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-12);
+  padding: var(--gap-8);
+  border-radius: 8px;
+  background: var(--color-light-bg-secondary, #f5f5f5);
+}
+
+.bubble {
+  max-width: 85%;
+  /* вертикаль / горизонталь — текст не прижат к краям плашки */
+  padding: var(--gap-12) var(--gap-16);
+  border-radius: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubbleUser {
+  align-self: flex-end;
+  background: var(--color-primary, #1573fe);
+  color: #fff;
+}
+
+.bubbleAssistant {
+  align-self: flex-start;
+  background: var(--color-gray-0, #fff);
+  border: 1px solid var(--color-gray-4, #d9d9d9);
+}
+
+.form {
+  display: flex;
+  gap: var(--gap-8);
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.input {
+  flex: 1;
+  min-height: 2.5rem;
+  max-height: 8rem;
+  resize: vertical;
+  padding: var(--gap-8) var(--gap-16);
+  border: 1px solid var(--color-gray-4, #d9d9d9);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--color-gray-0, #fff);
+}
+
+.hint {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.error {
+  color: var(--color-1, #df1525);
+}
+
+.empty {
+  margin: auto;
+  text-align: center;
+  opacity: 0.7;
+}

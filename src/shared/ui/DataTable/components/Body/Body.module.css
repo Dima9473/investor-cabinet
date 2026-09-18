@@ -1,4 +1,8 @@
 .cell {
     padding: var(--padding-8);
     text-align: right;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    vertical-align: top;
 }

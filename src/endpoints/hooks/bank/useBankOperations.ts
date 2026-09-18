@@ -10,9 +10,22 @@ type UseBankOperationsProps = Omit<OperationsRequest, 'bankName'> & {
     bankName: string
 }
 
+const OPERATIONS_STALE_TIME_MS = 5 * 60 * 1000
+
+const toQueryKeyDate = (value?: Date) =>
+    value instanceof Date ? value.toISOString() : ''
+
 export const useBankOperations = (props?: UseBankOperationsProps) => {
 
     const { bankName = '', ...rest } = props || {} as UseBankOperationsProps
+
+    const queryKey = [
+        bankName,
+        'operations',
+        rest?.accountId ?? '',
+        toQueryKeyDate(rest?.from),
+        toQueryKeyDate(rest?.to),
+    ] as const
 
     return useEndpoint({
         queryFnOptions: {
@@ -25,8 +38,9 @@ export const useBankOperations = (props?: UseBankOperationsProps) => {
             mapper: (data: OperationsDTO): Operations => data
         },
         queryOptions: {
-            queryKey: [bankName, 'operations', rest?.accountId ?? '', rest?.from ?? '', rest?.to ?? ''],
+            queryKey: [...queryKey],
             enabled: !!bankName,
+            staleTime: OPERATIONS_STALE_TIME_MS,
             retry: isBankAbailable(bankName) ? 3 : false,
         }
     })

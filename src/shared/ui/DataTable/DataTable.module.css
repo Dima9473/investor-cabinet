@@ -1,5 +1,7 @@
+/* Таблица на всю ширину контейнера, колонки делят пространство поровну */
 .table {
-    display: block;
-    white-space: nowrap;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 

@@ -8,11 +8,7 @@ export const Body = <TData,>({ table }: { table: Table<TData> }) => {
       {table.getRowModel().rows.map((row) => (
         <tr key={row.id}>
           {row.getVisibleCells().map((cell) => (
-            <td
-              key={cell.id}
-              style={{ width: cell.column.getSize() }}
-              className={styles.cell}
-            >
+            <td key={cell.id} className={styles.cell}>
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </td>
           ))}

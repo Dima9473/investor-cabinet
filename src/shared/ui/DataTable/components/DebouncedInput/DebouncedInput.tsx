@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * A typical debounced input react component
@@ -19,18 +19,30 @@ export const DebouncedInput = ({
   debounce?: number;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) => {
   const [value, setValue] = useState(initialValue);
+  const onChangeRef = useRef(onChange);
+  const skipDebounceRef = useRef(true);
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   useEffect(() => {
     setValue(initialValue);
+    skipDebounceRef.current = true;
   }, [initialValue]);
 
   useEffect(() => {
+    if (skipDebounceRef.current) {
+      skipDebounceRef.current = false;
+      return undefined;
+    }
+
     const timeout = setTimeout(() => {
-      onChange(value);
+      onChangeRef.current(value);
     }, debounce);
 
     return () => clearTimeout(timeout);
-  }, [debounce, onChange, value]);
+  }, [debounce, value]);
 
   return (
     <input
